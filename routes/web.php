@@ -73,8 +73,8 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckLogin'], function () {
         Route::get('','backend\ProductController@ListProduct' );
         Route::get('add','backend\ProductController@AddProduct' );
         Route::post('add','backend\ProductController@PostAddProduct' );
-        Route::get('edit','backend\ProductController@EditProduct' );
-        Route::post('edit','backend\ProductController@PostEditProduct' );
+        Route::get('edit/{id}','backend\ProductController@EditProduct' );
+        Route::post('edit/{id}','backend\ProductController@PostEditProduct' );
 
         Route::get('detail-attr','backend\ProductController@DetailAttr' );
         Route::post('add-attr','backend\ProductController@AddAttr' );
@@ -87,8 +87,10 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckLogin'], function () {
         Route::post('edit-value/{id}','backend\ProductController@PostEditValue' );
         Route::get('del-value/{id}','backend\ProductController@DelValue' );
 
-        Route::get('add-variant','backend\ProductController@AddVarisant' );
+        Route::get('add-variant/{id}','backend\ProductController@AddVarisant' );
+        Route::post('add-variant/{id}','backend\ProductController@PostAddVarisant' );
         Route::get('edit-variant','backend\ProductController@EditVariant' );
+        Route::get('del-variant/{id}','backend\ProductController@DelVariant' );
 
     });
 

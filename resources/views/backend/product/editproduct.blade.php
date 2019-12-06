@@ -40,7 +40,7 @@
                     <form  method="post" enctype="multipart/form-data">
                         @csrf
                     <div class="panel panel-primary">
-                        <div class="panel-heading">Sửa sản phẩm Áo khoác nam đẹp (AN01)</div>
+                        <div class="panel-heading">Sửa sản phẩm {{ $product->name }} ({{ $product->product_code }})</div>
                         <div class="panel-body">
                             <div class="row" style="margin-bottom:40px">
                                 <div class="col-xs-8">
@@ -49,16 +49,13 @@
                                             <div class="form-group">
                                                 <label>Danh mục</label>
                                                 <select name="category" class="form-control">
-                                                    <option value='1'>Nam</option>
-                                                    <option value='3' selected>---|Áo khoác nam</option>
-                                                    <option value='2'>Nữ</option>
-                                                    <option value='4'>---|Áo khoác nữ</option>
+                                                    {{ GetCategory($category,0,'',$product->id) }}
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label>Mã sản phẩm</label>
                                                 <input  type="text" name="product_code" class="form-control"
-                                                    value="AN01">
+                                                    value="{{ $product->product_code }}">
                                                     @if ($errors->has('product_code'))
                                                         <div class="alert alert-danger" role="alert">
                                                         <strong> {{$errors->first('product_code')}}</strong>
@@ -68,7 +65,7 @@
                                             <div class="form-group">
                                                 <label>Tên sản phẩm</label>
                                                 <input  type="text" name="product_name" class="form-control"
-                                                    value="Áo khoác nam đẹp">
+                                                    value="{{ $product->name }}">
                                                     @if ($errors->has('product_name'))
                                                     <div class="alert alert-danger" role="alert">
                                                     <strong> {{$errors->first('product_name')}}</strong>
@@ -80,7 +77,7 @@
                                                         class="glyphicon glyphicon-chevron-right"></span>
                                                     Giá theo biến thể</a>
                                                 <input  type="number" name="product_price" class="form-control"
-                                                    value="150000">
+                                                    value="{{ number_format($product->price,0,'',',') }}">
                                                     @if ($errors->has('product_price'))
                                                     <div class="alert alert-danger" role="alert">
                                                     <strong> {{$errors->first('product_price')}}</strong>
@@ -90,15 +87,15 @@
                                             <div class="form-group">
                                                 <label>Sản phẩm nổi bật</label>
                                                 <select  name="featured" class="form-control">
-                                                    <option value="0">Không</option>
-                                                    <option value="1">Có</option>
+                                                    <option @if ($product->featured==0) selected @endif value="0">Không</option>
+                                                    <option @if ($product->featured==1) selected @endif value="1">Có</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label>Trạng thái</label>
                                                 <select  name="product_state" class="form-control">
-                                                    <option selected value="1">Còn hàng</option>
-                                                    <option value="0">Hết hàng</option>
+                                                    <option @if ($product->state==1) selected @endif value="1">Còn hàng</option>
+                                                    <option @if ($product->state==0) selected @endif value="0">Hết hàng</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -112,13 +109,13 @@
                                                 @endif
                                                 <input id="img" type="file" name="product_img" class="form-control hidden"
                                                     onchange="changeImg(this)">
-                                                <img id="avatar" class="thumbnail" width="100%" height="350px" src="public/backend/img/ao-khoac.jpg">
+                                                <img id="avatar" class="thumbnail" width="100%" height="350px" src="img/{{ $product->img }}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>Thông tin</label>
-                                        <textarea  name="info" style="width: 100%;height: 100px;">thông tin</textarea>
+                                        <textarea  name="info" style="width: 100%;height: 100px;">{{ $product->info }}</textarea>
                                     </div>
              
 
@@ -200,7 +197,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Miêu tả</label>
-                            <textarea id="editor"  name="description" style="width: 100%;height: 100px;"></textarea>
+                            <textarea id="editor"  name="description" style="width: 100%;height: 100px;">{{ $product->describe }}</textarea>
 
                         </div>
 

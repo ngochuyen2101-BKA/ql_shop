@@ -23,7 +23,7 @@ class ProductController extends Controller
         return view('backend.product.addproduct',$data);
     }
 
-    public function PostAddProduct(Request $r)
+    public function PostAddProduct(AddProductRequest $r)
     {
    
         $product = new product;
@@ -70,11 +70,15 @@ class ProductController extends Controller
             $vari->values()->Attach($var);
         }
 
+        return redirect('admin/product/add-variant/'.$product->id);
+
     }
 
-    public function EditProduct()
+    public function EditProduct(Request $r,$id)
     {
-        return view('backend.product.editproduct');
+        $data['product'] = product::find($id);
+        $data['category'] = category::all();
+        return view('backend.product.editproduct',$data);
     }
 
     public function PostEditProduct(EditProductRequest $r)
@@ -147,13 +151,32 @@ class ProductController extends Controller
         return redirect()->back()->with('thongbao','Đã xóa thành công');
     }
 
-    public function AddVarisant()
+    public function AddVarisant($id)
     {
-        return view('backend.variant.addvariant');
+        $data['product']=product::find($id);
+        return view('backend.variant.addvariant',$data);
+    }
+
+    public function PostAddVarisant(Request $r,$id)
+    {
+        foreach($r->variant as $key=>$value)
+        {
+            $vari = variant::find($key);
+            $vari->price = $value;
+            $vari->save();
+        }
+
+        return redirect('admin/product')->with('thongbao','Đã thêm thành công');
     }
 
     public function EditVariant()
     {
         return view('backend.variant.editvariant');
+    }
+
+    public function DelVariant($id)
+    {
+        variant::destroy($id);
+        return redirect()->back()->with('thongbao','Đã xóa biển thể thành công!');
     }
 }

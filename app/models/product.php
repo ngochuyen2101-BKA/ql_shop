@@ -17,4 +17,9 @@ class product extends Model
     {
         return $this->belongsToMany('App\models\values', 'values_product', 'product_id', 'values_id');
     }
+
+    public function variant()
+    {
+        return $this->hasMany('App\models\variant', 'product_id', 'id');
+    }
 }
