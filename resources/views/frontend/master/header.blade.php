@@ -20,7 +20,7 @@
 								</li>
 								<li><a href="/about">Giới thiệu</a></li>
 								<li><a href="/contact">Liên hệ</a></li>
-								<li><a href="/cart"><i class="icon-shopping-cart"></i> Giỏ hàng [0]</a></li>
+								<li><a href="/cart"><i class="icon-shopping-cart"></i> Giỏ hàng [{{ count(Cart::content()) }}]</a></li>
 							</ul>
 						</div>
 					</div>

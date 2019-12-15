@@ -88,7 +88,7 @@
 												<td>{{ $row->category->name }}</td>
 												<td>
 													<a href="/admin/product/edit/{{ $row->id }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-													<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+													<a onclick="return del_prd('{{ $row->name }}') " href="/admin/product/del/{{ $row->id }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
 												</td>
 											</tr>
 										@endforeach
@@ -118,3 +118,13 @@
 	</div>
 
 @endsection		
+
+@section('script')
+@parent
+<script>
+	function del_prd(prd)
+		{
+			return confirm('Bạn muốn xóa danh mục: '+prd);
+		}
+</script>
+@endsection

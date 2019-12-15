@@ -41,77 +41,43 @@
 								<span>Xóa</span>
 							</div>
 						</div>
-						<div class="product-cart">
-							<div class="one-forth">
-								<div class="product-img">
-									<img class="img-thumbnail cart-img" src="images/item-6.jpg">
-								</div>
-								<div class="detail-buy">
-									<h4>Tên sản phẩm</h4>
-									<div class="row">
-										<div class="col-md-3"><strong>Color:Red</strong></div>
-										<div class="col-md-3"><strong>Size:XL</strong></div>
-										
-									</div>
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<span class="price">₫ 680.000</span>
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<input type="number" id="quantity" name="quantity" class="form-control input-number text-center" value="1">
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<span class="price">₫ 1.200.000</span>
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<a href="#" class="closed"></a>
-								</div>
-							</div>
-						</div>
-						<div class="product-cart">
+						@foreach ($cart as $product)
+							<div class="product-cart">
 								<div class="one-forth">
 									<div class="product-img">
-										<img class="img-thumbnail cart-img" src="images/item-6.jpg">
+										<img class="img-thumbnail cart-img" src="/backend/img/{{ $product->options->img }}">
 									</div>
 									<div class="detail-buy">
-										<h4>Tên sản phẩm</h4>
+										<h4>{{ $product->name }}</h4>
 										<div class="row">
-											<div class="col-md-3"><strong>Color:Red</strong></div>
-											<div class="col-md-3"><strong>Size:XL</strong></div>
-											
+											@foreach ($product->options->attr as $key=>$value)
+												<div class="col-md-3"><strong>{{ $key }}:{{ $value }}</strong></div>
+											@endforeach
 										</div>
 									</div>
 								</div>
 								<div class="one-eight text-center">
 									<div class="display-tc">
-										<span class="price">₫ 680.000</span>
+										<span class="price">{{ number_format($product->price,0,'',',') }} đ</span>
 									</div>
 								</div>
 								<div class="one-eight text-center">
 									<div class="display-tc">
-										<input type="number" id="quantity" name="quantity" class="form-control input-number text-center" value="1">
+										<input onchange="update_cart('{{ $product->rowId }}',this.value)" type="number" id="quantity" name="quantity" class="form-control input-number text-center" value="{{ $product->qty }}">
 									</div>
 								</div>
 								<div class="one-eight text-center">
 									<div class="display-tc">
-										<span class="price">₫ 1.200.000</span>
+										<span class="price">{{ number_format($product->price*$product->qty,0,'',',') }} đ</span>
 									</div>
 								</div>
 								<div class="one-eight text-center">
 									<div class="display-tc">
-										<a href="#" class="closed"></a>
+										<a onclick="return del_cart('{{ $product->name }}')" href="/cart/del/{{ $product->rowId }}" class="closed"></a>
 									</div>
 								</div>
 							</div>
-					
+						@endforeach
 					</div>
 				</div>
 				<div class="row">
@@ -124,11 +90,11 @@
 								<div class="col-md-3 col-md-push-1 text-center">
 									<div class="total">
 										<div class="sub">
-											<p><span>Tổng:</span> <span>₫ 4.000.000</span></p>
+											<p><span>Tổng:</span> <span>{{ $total }} đ</span></p>
 										</div>
 										<div class="grand-total">
-											<p><span><strong>Tổng cộng:</strong></span> <span>₫ 3.550.000</span></p>
-											<a href="checkout.html" class="btn btn-primary">Thanh toán <i class="icon-arrow-right-circle"></i></a>
+											<p><span><strong>Tổng cộng:</strong></span> <span>{{ $total }} đ</span></p>
+											<a href="/checkout" class="btn btn-primary">Thanh toán <i class="icon-arrow-right-circle"></i></a>
 										</div>
 									</div>
 								</div>
@@ -141,4 +107,31 @@
 
 		<!-- end main -->
 @stop
+
+@section('script')
+@parent
+<script>
+	function del_cart(name)
+	{
+		return confirm('Bạn muốn xóa sản phẩm: '+name+'?');
+	}
+
+	function update_cart(rowId,qty)
+			{
+				$.get("/cart/update/"+rowId+"/"+qty,
+				function(data)
+				{
+					if(data=="success")
+					{
+						location.reload();
+					}
+					else
+					{
+						alert("cập nhật thất bại");
+					}
+				}
+				);
+			}
+</script>
+@endsection
 		

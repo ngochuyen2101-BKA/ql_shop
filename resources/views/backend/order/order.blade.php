@@ -21,10 +21,17 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">Danh sách đơn đặt hàng chưa xử lý</div>
 					<div class="panel-body">
+						@if (session('thongbao'))
+						<div class="alert bg-success" role="alert">
+							<svg class="glyph stroked checkmark">
+									<use xlink:href="#stroked-checkmark"></use>
+							</svg>{{ session('thongbao') }}<a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+						</div>
+						@endif
 						<div class="bootstrap-table">
 							<div class="table-responsive">
 
-								<a href="orderinfo.html" class="btn btn-success">Đơn đã xử lý</a>
+								<a href="/admin/order/processed" class="btn btn-success">Đơn đã xử lý</a>
 								<table class="table table-bordered" style="margin-top:20px;">
 									<thead>
 										<tr class="bg-primary">
@@ -37,16 +44,18 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Nguyễn Thế Phúc</td>
-											<td>0356653300</td>
-											<td>Thường tín</td>
-											<td>
-												<a href="orderinfo.html" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>Xử lý</a>
-
-											</td>
-										</tr>
+										
+											@foreach ($customers as $customer)
+											<tr>
+												<td>{{ $customer->id }}</td>
+												<td>{{ $customer->full_name }}</td>
+												<td>{{ $customer->phone }}</td>
+												<td>{{ $customer->address }}</td>
+												<td>
+													<a href="/admin/order/detail/{{ $customer->id }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>Xử lý</a>
+												</td>
+											</tr>
+											@endforeach
 
 									</tbody>
 								</table>

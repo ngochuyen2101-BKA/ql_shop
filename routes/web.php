@@ -21,16 +21,16 @@ Route::get('about','frontend\HomeController@GetAbout' );
 // product
 Route::group(['prefix' => 'product'], function () {
     Route::get('','frontend\ProductController@ListProduct' );
-    Route::get('detail','frontend\ProductController@DetailProduct' );
+    Route::get('detail/{id}','frontend\ProductController@DetailProduct' );
     // Route::get('cart','frontend\ProductController@Cart' );
     // Route::get('checkout','frontend\ProductController@CheckOut' );
 });
 
 //checkout
 Route::group(['prefix' => 'checkout'], function () {
-    Route::get('','frontend\CheckOutController@GetCheckout');
-    Route::get('complete','frontend\CheckOutController@GetComplete');
-    // Route::post('','frontend\CheckOutController@PostCheckout');
+    Route::get('','frontend\CheckOutController@Checkout');
+    Route::get('complete/{id_customer}','frontend\CheckOutController@GetComplete');
+    Route::post('','frontend\CheckOutController@PostCheckout');
     // Route::get('complete/{order_id}','frontend\CheckOutController@GetComplete');
 });
 
@@ -38,9 +38,9 @@ Route::group(['prefix' => 'checkout'], function () {
 //cart
 Route::group(['prefix' => 'cart'], function () {
     Route::get('','frontend\CartController@GetCart');
-    // Route::get('add','frontend\CartController@AddCart');
-    // Route::get('update/{rowId}/{qty}','frontend\CartController@UpdateCart');
-    // Route::get('del/{rowId}','frontend\CartController@DelCart');
+    Route::get('addcart','frontend\CartController@AddCart');
+    Route::get('update/{rowId}/{qty}','frontend\CartController@UpdateCart');
+    Route::get('del/{id}','frontend\CartController@DelCart');
     // Route::get('all','frontend\CartController@AllCart');
 });
 
@@ -75,6 +75,7 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckLogin'], function () {
         Route::post('add','backend\ProductController@PostAddProduct' );
         Route::get('edit/{id}','backend\ProductController@EditProduct' );
         Route::post('edit/{id}','backend\ProductController@PostEditProduct' );
+        Route::get('del/{id}','backend\ProductController@DelProduct' );
 
         Route::get('detail-attr','backend\ProductController@DetailAttr' );
         Route::post('add-attr','backend\ProductController@AddAttr' );
@@ -89,7 +90,8 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckLogin'], function () {
 
         Route::get('add-variant/{id}','backend\ProductController@AddVarisant' );
         Route::post('add-variant/{id}','backend\ProductController@PostAddVarisant' );
-        Route::get('edit-variant','backend\ProductController@EditVariant' );
+        Route::get('edit-variant/{id}','backend\ProductController@EditVariant' );
+        Route::post('edit-variant/{id}','backend\ProductController@PostEditVariant' );
         Route::get('del-variant/{id}','backend\ProductController@DelVariant' );
 
     });
@@ -98,7 +100,8 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckLogin'], function () {
     Route::group(['prefix' => 'order'], function () {
 
         Route::get('','backend\OrderController@ListOrder' );
-        Route::get('detail','backend\OrderController@DetailOrder' );
+        Route::get('detail/{customer_id}','backend\OrderController@DetailOrder' );
+        Route::get('active/{customer_id}','backend\OrderController@ActiveOrder' );
         Route::get('processed','backend\OrderController@Processed' );
 
     });

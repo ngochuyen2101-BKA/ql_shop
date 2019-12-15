@@ -42,6 +42,13 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">Sửa sản phẩm {{ $product->name }} ({{ $product->product_code }})</div>
                         <div class="panel-body">
+                            @if (session('thongbao'))
+                            <div class="alert bg-success" role="alert">
+                                <svg class="glyph stroked checkmark">
+                                        <use xlink:href="#stroked-checkmark"></use>
+                                </svg>{{ session('thongbao') }}<a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                            </div>
+                            @endif
                             <div class="row" style="margin-bottom:40px">
                                 <div class="col-xs-8">
                                     <div class="row">
@@ -49,7 +56,7 @@
                                             <div class="form-group">
                                                 <label>Danh mục</label>
                                                 <select name="category" class="form-control">
-                                                    {{ GetCategory($category,0,'',$product->id) }}
+                                                    {{ GetCategory($category,0,'',$product->category_id) }}
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -73,11 +80,11 @@
                                                     @endif
                                             </div>
                                             <div class="form-group">
-                                                <label>Giá sản phẩm (Giá chung)</label> <a href="admin/product/edit-variant/1"><span
+                                                <label>Giá sản phẩm (Giá chung)</label> <a href="/admin/product/edit-variant/{{ $product->id }}"><span
                                                         class="glyphicon glyphicon-chevron-right"></span>
                                                     Giá theo biến thể</a>
                                                 <input  type="number" name="product_price" class="form-control"
-                                                    value="{{ number_format($product->price,0,'',',') }}">
+                                                    value="{{ number_format($product->price,0,'','.') }}">
                                                     @if ($errors->has('product_price'))
                                                     <div class="alert alert-danger" role="alert">
                                                     <strong> {{$errors->first('product_price')}}</strong>
@@ -124,70 +131,50 @@
 
                 <div class="panel panel-default">
                     <div class="panel-body tabs">
-                        <label>Các thuộc Tính</label>
+                        <label>Các thuộc Tính </label>
+                        {{ ShowError($errors,'attr_name') }}
+                        {{ ShowError($errors,'value_name') }}
                         <ul class="nav nav-tabs">
-                            <li class='active'><a href="#tab17" data-toggle="tab">size</a></li>
-                            <li><a href="#tab18" data-toggle="tab">Màu sắc</a></li>
+                            @php
+                                $i=0;
+                            @endphp
+                            @foreach ($attrs as $attr)
+                                <li @if ($i==0) class='active' @endif><a href="#tab{{ $attr->id }}" data-toggle="tab">{{ $attr->name }}</a></li>
+                                @php
+                                    $i=1;
+                                @endphp
+                            @endforeach
+
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane fade  active  in" id="tab17">
+                            @foreach ($attrs as $attr)
+                            <div class="tab-pane fade @if ($i==1) active @endif in" id="tab{{ $attr->id }}">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>S</th>
-                                            <th>M</th>
-                                            <th>L</th>
+                                            @foreach ($attr->values as $value)
+                                                <th>{{ $value->value }}</th>
+                                            @endforeach
+
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td> <input class="form-check-input" type="checkbox" name="attr[17][60]"
-                                                    value="60"> </td>
-                                            <td> <input class="form-check-input" type="checkbox" name="attr[17][61]"
-                                                    value="61" checked> </td>
-                                            <td> <input class="form-check-input" type="checkbox" name="attr[17][64]"
-                                                    value="64" checked> </td>
+                                            @foreach ($attr->values as $value)
+                                                <td><input @if(check_value($product,$value->id)) checked @endif class="form-check-input" type="checkbox" name="attr[{{ $attr->id }}][]"
+                                                    value="{{ $value->id }}"> </td>
+                                            @endforeach
                                         </tr>
                                     </tbody>
                                 </table>
                                 <hr>
                             </div>
-
-                            <div class="tab-pane fade  in" id="tab18">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Đỏ</th>
-                                            <th>đen</th>
-                                            <th>xám</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td> <input class="form-check-input" type="checkbox" name="attr[18][62]"
-                                                    value="62"> </td>
-                                            <td> <input class="form-check-input" type="checkbox" name="attr[18][63]"
-                                                    value="63" checked> </td>
-                                            <td> <input class="form-check-input" type="checkbox" name="attr[18][65]"
-                                                    value="65"> </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <hr>
-                            </div>
-
-
+                            @php
+                                $i=2;
+                            @endphp
+                            @endforeach
 
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <p></p>
-
-                        </label>
                     </div>
                 </div>
 

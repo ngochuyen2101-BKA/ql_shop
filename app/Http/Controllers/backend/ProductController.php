@@ -25,7 +25,7 @@ class ProductController extends Controller
 
     public function PostAddProduct(AddProductRequest $r)
     {
-   
+   dd($r->all());
         $product = new product;
         $product->product_code=$r->product_code;
         $product->name=$r->product_name;
@@ -78,12 +78,66 @@ class ProductController extends Controller
     {
         $data['product'] = product::find($id);
         $data['category'] = category::all();
+        $data['attrs'] = attribute::all();
         return view('backend.product.editproduct',$data);
     }
 
-    public function PostEditProduct(EditProductRequest $r)
+    public function PostEditProduct(EditProductRequest $r,$id)
     {
+        $product = product::find($id);
+        $product->product_code=$r->product_code;
+        $product->name=$r->product_name;
+        $product->price=$r->product_price;
+        $product->featured=$r->featured;
+        $product->state=$r->product_state;
+        $product->info=$r->info;
+        $product->describe=$r->description;
         
+        if($r->hasFile('product_img'))
+        {
+            if($product->img != 'no-img.jpg'){
+                unlink('backend/img/'.$product->img);
+            }
+            $file=$r->product_img;
+            $fileName=Str::slug($r->product_name,'-').'.'.$file->getClientOriginalExtension();
+            $file->move('backend/img',$fileName);
+            $product->img=$fileName;
+        }
+
+        $product->category_id=$r->category;
+        $product->save();
+
+        $mang = array();
+        foreach($r->attr as $value)
+        {
+            foreach($value as $item)
+            {
+                $mang[]=$item;
+            }
+        }
+       
+        $product->values()->Sync($mang);
+
+        $variant = get_combinations($r->attr);
+           
+        foreach($variant as $var)
+        {
+            if(check_var($product,$var))
+            {
+                $vari = new variant;
+                $vari->product_id = $product->id;
+                $vari->save();
+                $vari->values()->Attach($var);
+            }
+        }
+
+        return redirect()->back()->with('thongbao','Đã sửa thành công');
+    }
+
+    public function DelProduct($id)
+    {
+        product::destroy($id);
+        return redirect()->back()->with('thongbao','Đã xóa thành công');
     }
 
     public function DetailAttr()
@@ -169,9 +223,22 @@ class ProductController extends Controller
         return redirect('admin/product')->with('thongbao','Đã thêm thành công');
     }
 
-    public function EditVariant()
+    public function EditVariant($id)
     {
-        return view('backend.variant.editvariant');
+        $data['product'] = product::find($id);
+        return view('backend.variant.editvariant',$data);
+    }
+
+    public function PostEditVariant(Request $r,$id)
+    {
+        foreach($r->variant as $key=>$value)
+        {
+            $vari = variant::find($key);
+            $vari->price = $value;
+            $vari->save();
+        }
+
+        return redirect('admin/product')->with('thongbao','Đã sửa thành công');
     }
 
     public function DelVariant($id)

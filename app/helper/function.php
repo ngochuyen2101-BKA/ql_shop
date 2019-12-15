@@ -73,3 +73,54 @@ function get_combinations($arrays) {
 	}
 	return $result;
 }
+
+function check_value($product,$value_check)
+{
+    foreach($product->values as $value)
+    {
+        if($value->id == $value_check)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+function check_var($product,$array)
+{
+    foreach($product->variant as $row)
+    {
+        $mang = array();
+        foreach($row->values as $value)
+        {
+            $mang[] = $value->id;
+        }
+
+        if(array_diff($mang,$array) == NULL)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+function getprice($product,$array)
+{
+    foreach($product->variant as $row)
+    {
+        $mang = array();
+        foreach($row->values as $value)
+        {
+            $mang[] = $value->value;
+        }
+        if(array_diff($mang,$array)==NULL)
+        {
+            if($row->price == 0)
+            {
+                return $product->price;
+            }
+            return $row->price;
+        }
+    }
+    return $product->price;
+}
