@@ -54,9 +54,12 @@ class CheckOutController extends Controller
 
     public function PostCheckout(CheckOutRequest $r)
     {
+      
         $customer = new customer;
         $customer->full_name = $r->full;
         $customer->address = $r->address;
+        $customer->province = $r->province;
+        $customer->district = $r->district;
         $customer->email = $r->email;
         $customer->phone = $r->phone;
         $customer->total = Cart::total(0,'','');
@@ -66,6 +69,7 @@ class CheckOutController extends Controller
         foreach(Cart::content() as $product)
         {
             $order = new order;
+            $order->product_code = $product->id;
             $order->name = $product->name;
             $order->price = $product->price;
             $order->quantity = $product->qty;

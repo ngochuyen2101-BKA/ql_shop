@@ -40,6 +40,20 @@
 									<div class="form-group">
 										<label for="fname">Địa chỉ</label>
 										<input name="address" type="text" id="address" class="form-control" placeholder="Nhập địa chỉ của bạn" value="{{ old('address') }}">
+										{!! ShowError($errors,"address") !!}
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-md-6">
+										<label for="fname">Quận/Huyện</label>
+										<input name="district" type="text" id="district" class="form-control" placeholder="Ex: Thanh Xuân" value="{{ old('district') }}">
+										{!! ShowError($errors,"district") !!}
+									</div>
+									<div class="col-md-6">
+										<label for="fname">Tỉnh/Thành Phố</label>
+										<input name="province" type="text" id="province" class="form-control" placeholder="Ex: Hà Nội" value="{{ old('province') }}">
+										{!! ShowError($errors,"province") !!}
 									</div>
 								</div>
 
@@ -66,6 +80,7 @@
 					<div class="col-md-5">
 						<div class="cart-detail">
 							<h2>Tổng Giỏ hàng</h2>
+							<p>< Chưa tính phí vận chuyển ></p>
 							<ul>
 								<li>
 
@@ -84,6 +99,7 @@
 								</li>
 
 								<li><span>Tổng tiền đơn hàng</span> <span>{{ $total }} đ</span></li>
+								
 							</ul>
 						</div>
 

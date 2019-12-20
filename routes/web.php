@@ -48,11 +48,19 @@ Route::group(['prefix' => 'cart'], function () {
 
 Route::get('login','backend\LoginController@GetLogin' )->middleware('CheckLogout');
 Route::post('login','backend\LoginController@PostLogin' );
+Route::get('signup','backend\LoginController@GetSignUp' );
+Route::post('signup','backend\LoginController@PostSignUp' );
+
 
 Route::group(['prefix' => 'admin','middleware' => 'CheckLogin'], function () {
     
     Route::get('','backend\LoginController@GetIndex' );
     Route::get('logout','backend\LoginController@Logout' );
+    Route::get('info/{id}','backend\LoginController@Info' );
+    Route::get('edit-info/{id}','backend\LoginController@EditInfo' );
+    Route::post('edit-info/{id}','backend\LoginController@PostEditInfo' );
+    Route::get('change-password/{id}','backend\LoginController@ChangePassword' );
+    Route::post('change-password/{id}','backend\LoginController@PostChangePassword' );
 
     // category
     Route::group(['prefix' => 'category'], function () {
@@ -102,9 +110,22 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckLogin'], function () {
         Route::get('','backend\OrderController@ListOrder' );
         Route::get('detail/{customer_id}','backend\OrderController@DetailOrder' );
         Route::get('active/{customer_id}','backend\OrderController@ActiveOrder' );
+        Route::get('active-ed','backend\OrderController@ActiveEdOrder' );
+        Route::get('deliver','backend\OrderController@DeliverOrder' );
+        Route::get('active-after/{customer_id}','backend\OrderController@ActiveAfter' );
+        Route::get('customer-active/{customer_id}','backend\OrderController@CustomerActiveEdOrder' );
         Route::get('processed','backend\OrderController@Processed' );
+        Route::get('detail-ghtk/{customer_id}','backend\OrderController@DetailGHTK' );
 
     });
 
+    //user
+    Route::group(['prefix' => 'user'], function () { 
+        Route::get('','backend\UserController@ListUser' );
+        Route::get('user-admin','backend\UserController@ListUserAdmin' );
+        Route::get('add','backend\UserController@AddUser' );
+        Route::post('add','backend\UserController@PostAddUser' );
+        Route::get('detail/{email}','backend\UserController@DetailUser' );
+    });
 
 });

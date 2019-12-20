@@ -93,7 +93,7 @@
 											<p><span>Tổng:</span> <span>{{ $total }} đ</span></p>
 										</div>
 										<div class="grand-total">
-											<p><span><strong>Tổng cộng:</strong></span> <span>{{ $total }} đ</span></p>
+											<p><span><strong>Tổng cộng:</strong></span> <span>{{ $total }} đ </span></p><p>< Chưa tính phí vận chuyển></p>
 											<a href="/checkout" class="btn btn-primary">Thanh toán <i class="icon-arrow-right-circle"></i></a>
 										</div>
 									</div>

@@ -1,5 +1,5 @@
 @extends('backend.master.master')
-@section('title','Danh sách đơn hàng')
+@section('title','Chi tiết đơn hàng')
 @section('order')
 	class="active"
 @endsection
@@ -38,8 +38,6 @@
 											</div>
 										</div>
 									</div>
-
-
 								</div>
 								<table class="table table-bordered" style="margin-top:20px;">
 									<thead>
@@ -96,7 +94,7 @@
 									</tbody>
 								</table>
 								<div class="alert alert-primary" role="alert" align='right'>
-									<a name="" id="" class="btn btn-success" href="/admin/order/active/{{ $customer->id }}" role="button">Đã xử lý</a>
+									<a name="" id="" class="btn btn-success" href="/admin/order/active/{{ $customer->id }}" role="button">Gửi GHTK</a>
 								</div>
 							</div>
 						</div>

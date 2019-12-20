@@ -4,11 +4,12 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\{LoginRequest,SignupRequest,EditInfoRequest,ChangePasswordRequest};
 use DB;
 use App\models\{users,customer};
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Mail;
 
 class LoginController extends Controller
 {
@@ -51,5 +52,74 @@ class LoginController extends Controller
     {
         Auth::logout();
         return redirect('login');
+    }
+
+    public function Info($id)
+    {
+        $data['user'] = users::find($id);
+        return view('backend.info',$data);
+    }
+
+    public function EditInfo($id)
+    {
+        $data['user'] = users::find($id);
+        return view('backend.editinfo',$data);
+    }
+
+    public function PostEditInfo(EditInfoRequest $r,$id)
+    {
+        $user = users::find($id);
+        $user->email = $r->email;
+        $user->full = $r->full;
+        $user->address = $r->address;
+        $user->phone = $r->phone;
+        $user->save();
+
+        return redirect('/admin/info/'.$user->id)->with('thongbao','Bạn đã cập nhật thành công');
+    }
+
+    public function ChangePassword($id)
+    {
+        $data['user'] = users::find($id);
+        return view('backend.changepassword',$data);
+    }
+
+    public function PostChangePassword(ChangePasswordRequest $r,$id)
+    {
+        $u = users::find($id);
+        if($r->password == $r->repassword)
+        {
+            $u->password = bcrypt($r->password);
+        }
+        $u->save();
+        
+        // $data['name']=$u->full;
+        // $data['email']=$r->email;
+        // Mail::send('mail',$data,function($message) use ($data){
+        //     $message->from('huyenntn.ntnh@gmail.com','NNH Shop');
+        //     $message->to($data['email'],'Khách hàng');
+        //     $message->subject('Change Password');
+        // });
+        Auth::logout();
+        return redirect('login')->with('thongbao1','Đổi mật khẩu thành công');
+    }
+
+    public function GetSignUp()
+    {
+        return view('backend.login.signup');
+    }
+
+    public function PostSignUp(SignupRequest $r)
+    {
+        $user = new users;
+        $user->email = $r->email;
+        $user->password = bcrypt($r->password);
+        $user->full = $r->full;
+        $user->address = $r->address;
+        $user->phone = $r->phone;
+        $user->level = 2;
+        $user->save();
+        
+        return redirect('/login')->with('thongbao1','Tạo tài khoản thành công');
     }
 }

@@ -31,6 +31,8 @@
 						<div class="bootstrap-table">
 							<div class="table-responsive">
 
+								<a href="/admin/order/active-ed" class="btn btn-warning">Đơn đã giao hàng</a>
+								<a href="/admin/order/deliver" class="btn btn-primary">Đơn đang vận chuyển</a>
 								<a href="/admin/order/processed" class="btn btn-success">Đơn đã xử lý</a>
 								<table class="table table-bordered" style="margin-top:20px;">
 									<thead>
@@ -39,7 +41,6 @@
 											<th>Tên khách hàng</th>
 											<th>Sđt</th>
 											<th>Địa chỉ</th>
-
 											<th>Xử lý</th>
 										</tr>
 									</thead>

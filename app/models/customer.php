@@ -12,4 +12,9 @@ class customer extends Model
     {
         return $this->hasMany('App\models\order', 'customer_id', 'id');
     }
+
+    public function ghtk()
+    {
+        return $this->hasMany('App\models\ghtk', 'customer_id', 'id');
+    }
 }

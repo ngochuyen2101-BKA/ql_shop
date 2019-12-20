@@ -1100,9 +1100,48 @@ h1.page-header {
 {
 	width: 400px;
 }
+.text-center {
+	margin-top: 20px;
+    text-align: center!important;
+}
 
+.txt1 {
+    font-size: 15px;
+    line-height: 1.4;
+    color: #999999;
+}
 
+.txt2 {
+    font-size: 15px;
+    line-height: 1.4;
+    color: #4272d7;
+}
 
+strong.qwert {
+    font-size: 17px;
+    font-weight: 500 !important;
+    line-height: 36px;
+}
+
+.col-md-6.info {
+    margin-left: 25%;
+}
+
+.alert.btn-infoadmin {
+    float: right;
+}
+
+a.infoadmin {
+    width: 150px;
+}
+
+a.list-user {
+    width: 170px;
+}
+
+a.count-user {
+    display: none;
+}
 
 
 

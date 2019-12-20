@@ -25,7 +25,6 @@ class ProductController extends Controller
 
     public function PostAddProduct(AddProductRequest $r)
     {
-   dd($r->all());
         $product = new product;
         $product->product_code=$r->product_code;
         $product->name=$r->product_name;

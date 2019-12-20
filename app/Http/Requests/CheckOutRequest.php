@@ -25,6 +25,9 @@ class CheckOutRequest extends FormRequest
     {
         return [
         'full'=>'required|min:7',
+        'address'=>'required',
+        'province'=>'required',
+        'district'=>'required',
 	    'email'=>'required|email',
         'phone'=>'required|min:7|max:11'
             
@@ -35,6 +38,9 @@ class CheckOutRequest extends FormRequest
         return [
         'full.required'=>'Không được để trống Họ Tên',
         'full.min'=>'Họ Tên Không được nhỏ hơn 7 ký tự',
+        'address.required'=>'Không được để trống địa chỉ',
+        'province.required'=>'Không được để trống tỉn/thành phố',
+        'district.required'=>'Không được để trống quận/huyện',
         'email.required'=>'Email không được để trống',
         'email.email'=>'Email Không đúng định dạng',
         'phone.required'=>'Không được để trống Số Điện thoại',

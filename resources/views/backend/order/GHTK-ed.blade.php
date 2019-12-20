@@ -1,5 +1,5 @@
 @extends('backend.master.master')
-@section('title','Đơn hàng đã xử lý')
+@section('title','Đơn hàng đã gửi')
 @section('order')
 	class="active"
 @endsection
@@ -20,7 +20,7 @@
 			<div class="col-xs-12 col-md-12 col-lg-12">
 
 				<div class="panel panel-primary">
-					<div class="panel-heading">Danh sách đơn đặt hàng đã xử lý</div>
+					<div class="panel-heading">Danh sách đơn đặt hàng đã gửi</div>
 					<div class="panel-body">
 						<div class="bootstrap-table">
 							<div class="table-responsive">
@@ -35,7 +35,7 @@
                                             <th>Email</th>
                                             <th>Sđt</th>
                                             <th>Địa chỉ</th>
-                                            <th>Thời gian</th>
+                                            <th>Xử lý</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -46,12 +46,15 @@
 												<td>{{ $customer->email }}</td>
 												<td>{{ $customer->phone }}</td>
 												<td>{{ $customer->address }}</td>
-												<td>{{ $customer->updated_at }}</td>
+												<td>
+													<a href="/admin/order/active-after/{{ $customer->id }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>Xử lý</a>
+												</td>
 											</tr>
 										@endforeach
                                         
                                     </tbody>
-                                </table>
+								</table>
+								
 							</div>
 						</div>
 						<div class="clearfix"></div>
