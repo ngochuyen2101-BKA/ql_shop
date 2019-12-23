@@ -22,9 +22,13 @@ class LoginController extends Controller
     public function PostLogin(LoginRequest $request)
     {
       
-      if(Auth::attempt(['email' => $request->email, 'password' => $request->password]))
+      if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'level' => 1]))
       {
          return redirect('admin');
+      }
+      else if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'level' => 2]))
+      {
+         return redirect('/product');
       }
       else {
           // có ->withInput() thì mới có thể sử dụng value="{{ old('email') }}"
@@ -45,6 +49,7 @@ class LoginController extends Controller
         $data['month'] = $month;
         $data['number'] = $number;
         $data['order'] = customer::where('state',0)->count();
+        $data['cancel'] = customer::where('state',5)->count();
         return view('backend.index',$data);
     }
 

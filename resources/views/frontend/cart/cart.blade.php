@@ -73,7 +73,7 @@
 								</div>
 								<div class="one-eight text-center">
 									<div class="display-tc">
-										<a onclick="return del_cart('{{ $product->name }}')" href="/cart/del/{{ $product->rowId }}" class="closed"></a>
+										<a onclick="return del_cart('{{ $product->name }}')" href="/user/cart/del/{{ $product->rowId }}" class="closed"></a>
 									</div>
 								</div>
 							</div>
@@ -94,7 +94,7 @@
 										</div>
 										<div class="grand-total">
 											<p><span><strong>Tổng cộng:</strong></span> <span>{{ $total }} đ </span></p><p>< Chưa tính phí vận chuyển></p>
-											<a href="/checkout" class="btn btn-primary">Thanh toán <i class="icon-arrow-right-circle"></i></a>
+											<a href="/user/checkout/{{ Auth::user()->email }}" class="btn btn-primary">Thanh toán <i class="icon-arrow-right-circle"></i></a>
 										</div>
 									</div>
 								</div>

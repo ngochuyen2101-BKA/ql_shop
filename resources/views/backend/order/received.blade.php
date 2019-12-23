@@ -32,9 +32,11 @@
 						<div class="bootstrap-table">
 							<div class="table-responsive">
 
-								<a href="/admin/order/active-ed" class="btn btn-warning">Đơn đã giao hàng</a>
-								<a href="/admin/order/deliver" class="btn btn-primary">Đơn đang vận chuyển</a>
-								<a href="/admin/order/processed" class="btn btn-success">Đơn đã xử lý</a>
+								<a href="/admin/order/active-ed" class="btn btn-warning btn-nh">Đơn đã giao hàng</a>
+								<a href="/admin/order/deliver" class="btn btn-primary btn-nh">Đơn đang vận chuyển</a>
+								<a href="/admin/order/cancel" class="btn btn-danger btn-nh">Đơn hàng hủy</a>
+								<a href="/admin/order/confirm-order" class="btn btn-info btn-nh">Đơn đã xác nhận</a>
+								<a href="/admin/order/processed" class="btn btn-success btn-nh">Đơn đã xử lý</a>
 								<table class="table table-bordered" style="margin-top:20px;">
 									<thead>
 										<tr class="bg-primary">
@@ -62,6 +64,11 @@
 
 									</tbody>
 								</table>
+								<div align='right'>
+									<ul class="pagination">
+										{{ $customers->links() }}
+									</ul>
+								</div>
 							</div>
 						</div>
 						<div class="clearfix"></div>

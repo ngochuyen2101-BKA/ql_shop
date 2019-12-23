@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Cart;
 use App\Http\Requests\CheckOutRequest;
-use App\models\{customer,order,attr};
+use App\models\{customer,order,attr,users};
 
 class CheckOutController extends Controller
 {
-    public function Checkout()
+    public function Checkout($email)
     {
+        $data['custom'] = users::where('email',$email)->first();
         $data['cart'] = Cart::content();
         $data['total'] = Cart::total(0,'',',');
         return view('frontend.checkout.checkout',$data);
@@ -88,7 +89,7 @@ class CheckOutController extends Controller
             
         }
         Cart::destroy();
-        return redirect('/checkout/complete/'.$customer->id);
+        return redirect('/user/checkout/complete/'.$customer->id);
 
       //   $products=[];
       //   foreach(Cart::content() as $row)

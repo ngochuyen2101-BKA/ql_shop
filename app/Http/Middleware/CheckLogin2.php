@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class CheckLogin
+class CheckLogin2
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class CheckLogin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->level == 1)
+        if(Auth::check())
         {
             return $next($request);
         }
@@ -24,6 +24,5 @@ class CheckLogin
         {
             return redirect('login');    
         }
-        
     }
 }

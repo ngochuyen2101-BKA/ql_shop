@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 
 	<!-- Magnific Popup -->
 	<link rel="stylesheet" href="css/magnific-popup.css">
@@ -31,16 +32,27 @@
 
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/custome.css">
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
+	<script src="js/lumino.glyphs.js"></script>
 
 
 </head>
 
 <body>
 	<!--header -->
-	@include('frontend.master.header')
+	<style>
+	.navbar-header {
+		float: inherit !important;
+	}
+	</style>
+	@if (Auth::check()) @include('frontend.master.header2') 
+	@else  @include('frontend.master.header')
+	@endif
+	
+	
     <!-- End header -->
     <!-- main -->
     

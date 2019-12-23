@@ -1,0 +1,112 @@
+.panel-blue {
+    background: #30a5ff;
+    color: #fff;
+}
+
+.panel {
+    border: 0;
+}
+
+.panel-blue .panel-heading, .panel-teal .panel-heading, .panel-orange .panel-heading, .panel-red .panel-heading {
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+}
+
+.dark-overlay {
+    background: rgba(0, 0, 0, .05);
+    text-align: center;
+}
+
+.panel-heading {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.025em;
+    height: 66px;
+    line-height: 45px;
+}
+
+strong.qwert {
+    font-size: 17px;
+    font-weight: 500 !important;
+	line-height: 36px;
+	margin-left: 20px;
+}
+
+.col-md-6.info {
+	margin-left: 25%;
+	padding: 0 65px;
+}
+
+.alert.btn-infoadmin {
+    float: right;
+}
+
+a.infoadmin {
+	width: 150px;
+	font-size: 14px;
+	border-radius: 6px;
+}
+
+.btn-warning, .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .open > .dropdown-toggle.btn-warning, .btn-warning.disabled, .btn-warning[disabled], fieldset[disabled] .btn-warning, .btn-warning.disabled:hover, .btn-warning[disabled]:hover, fieldset[disabled] .btn-warning:hover, .btn-warning.disabled:focus, .btn-warning[disabled]:focus, fieldset[disabled] .btn-warning:focus, .btn-warning.disabled:active, .btn-warning[disabled]:active, fieldset[disabled] .btn-warning:active, .btn-warning.disabled.active, .btn-warning[disabled].active, fieldset[disabled] .btn-warning.active {
+    background-color: #ffb53e;
+    border-color: #ffb53e;
+    border-radius: 6px;
+}
+
+.user-info {
+    background: #e9ecf2;
+    margin-top: 50px;
+}
+
+.row.row-user {
+	margin: 0 60px 30px 60px;
+}
+
+.panel.panel-primary {
+    background: #e9ecf2;
+}
+
+.panel-user1 {
+    padding-top: 25px !important;
+}
+
+.btn-success, .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open > .dropdown-toggle.btn-success, .btn-success.disabled, .btn-success[disabled], fieldset[disabled] .btn-success, .btn-success.disabled:hover, .btn-success[disabled]:hover, fieldset[disabled] .btn-success:hover, .btn-success.disabled:focus, .btn-success[disabled]:focus, fieldset[disabled] .btn-success:focus, .btn-success.disabled:active, .btn-success[disabled]:active, fieldset[disabled] .btn-success:active, .btn-success.disabled.active, .btn-success[disabled].active, fieldset[disabled] .btn-success.active {
+    background-color: #8ad919 !important;
+    border-color: #8ad919 !important;
+}
+
+.edit-user{
+	margin: 0 8%;
+}
+
+.btn-user{
+	border-radius: 6px;
+}
+
+.bg-success {
+    color: #fff;
+    background-color: #8ad919;
+}
+
+.alert .glyph, .panel-heading .glyph {
+    width: 26px;
+    height: 26px;
+    margin: 0 10px 0 0;
+    stroke-width: 2px;
+}
+
+a.count-user {
+    display: none;
+}
+
+.btn-danger, .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open > .dropdown-toggle.btn-danger, .btn-danger.disabled, .btn-danger[disabled], fieldset[disabled] .btn-danger, .btn-danger.disabled:hover, .btn-danger[disabled]:hover, fieldset[disabled] .btn-danger:hover, .btn-danger.disabled:focus, .btn-danger[disabled]:focus, fieldset[disabled] .btn-danger:focus, .btn-danger.disabled:active, .btn-danger[disabled]:active, fieldset[disabled] .btn-danger:active, .btn-danger.disabled.active, .btn-danger[disabled].active, fieldset[disabled] .btn-danger.active {
+    background-color: #f9243f;
+    border-color: #f9243f;
+}
+
+.bg-danger {
+	color: #fff;
+	background-color: #f9243f;
+}
+a.bg-danger:hover {
+	background-color: #f9243f;
+}

@@ -1,5 +1,5 @@
 @extends('backend.master.master')
-@section('title','Chi tiết đơn hàng GHTK')
+@section('title','Chi tiết đơn hàng')
 @section('order')
 	class="active"
 @endsection
@@ -12,7 +12,7 @@
 				<li><a href="#"><svg class="glyph stroked home">
 							<use xlink:href="#stroked-home"></use>
 						</svg></a></li>
-				<li class="active">Chi tiết đơn hàng GHTK</li>
+				<li class="active">Chi tiết đơn hàng</li>
 			</ol>
 		</div>
 		<!--/.row-->
@@ -20,7 +20,7 @@
 			<div class="col-xs-12 col-md-12 col-lg-12">
 
 				<div class="panel panel-primary">
-					<div class="panel-heading">Chi tiết đơn hàng GHTK</div>
+					<div class="panel-heading">Chi tiết đơn hàng</div>
 					<div class="panel-body">
 						<div class="bootstrap-table">
 							<div class="table-responsive">
@@ -54,10 +54,6 @@
 									</div>
 
 
-								</div>
-								
-								<div class="alert alert-primary" role="alert" align='right'>
-									<a name="" id="" class="btn btn-success" href="/admin/order/deliver01/{{ $customer->id }}" role="button">Vận chuyển</a>
 								</div>
 							</div>
 						</div>

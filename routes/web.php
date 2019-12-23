@@ -26,22 +26,35 @@ Route::group(['prefix' => 'product'], function () {
     // Route::get('checkout','frontend\ProductController@CheckOut' );
 });
 
-//checkout
-Route::group(['prefix' => 'checkout'], function () {
-    Route::get('','frontend\CheckOutController@Checkout');
-    Route::get('complete/{id_customer}','frontend\CheckOutController@GetComplete');
-    Route::post('','frontend\CheckOutController@PostCheckout');
-    // Route::get('complete/{order_id}','frontend\CheckOutController@GetComplete');
-});
+Route::group(['prefix' => 'user','middleware' => 'CheckLogin2'], function () {
+    Route::get('info/{email}','frontend\HomeController@Info' );
+    Route::get('del/{id}','frontend\HomeController@DelOrder' );
+    Route::get('confirm/{id}','frontend\HomeController@ConfirmOrder' );
+    Route::get('detail/{id}','frontend\HomeController@DetailOrder' );
+    Route::get('detail01/{id}','frontend\HomeController@DetailOrder' );
+    Route::get('edit-info/{id}','frontend\HomeController@EditInfo' );
+    Route::post('edit-info/{id}','frontend\HomeController@PostEditInfo' );
+    Route::get('change-password/{id}','frontend\HomeController@ChangePassword' );
+    Route::post('change-password/{id}','frontend\HomeController@PostChangePassword' );
+    Route::get('logout','frontend\HomeController@Logout' );
+
+    //checkout
+    Route::group(['prefix' => 'checkout'], function () {
+        Route::get('{email}','frontend\CheckOutController@Checkout');
+        Route::get('complete/{id_customer}','frontend\CheckOutController@GetComplete');
+        Route::post('{email}','frontend\CheckOutController@PostCheckout');
+        // Route::get('complete/{order_id}','frontend\CheckOutController@GetComplete');
+    });
 
 
-//cart
-Route::group(['prefix' => 'cart'], function () {
-    Route::get('','frontend\CartController@GetCart');
-    Route::get('addcart','frontend\CartController@AddCart');
-    Route::get('update/{rowId}/{qty}','frontend\CartController@UpdateCart');
-    Route::get('del/{id}','frontend\CartController@DelCart');
-    // Route::get('all','frontend\CartController@AllCart');
+    //cart
+    Route::group(['prefix' => 'cart'], function () {
+        Route::get('','frontend\CartController@GetCart');
+        Route::get('addcart','frontend\CartController@AddCart');
+        Route::get('update/{rowId}/{qty}','frontend\CartController@UpdateCart');
+        Route::get('del/{id}','frontend\CartController@DelCart');
+        // Route::get('all','frontend\CartController@AllCart');
+    });
 });
 
 // backend
@@ -111,10 +124,18 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckLogin'], function () {
         Route::get('detail/{customer_id}','backend\OrderController@DetailOrder' );
         Route::get('active/{customer_id}','backend\OrderController@ActiveOrder' );
         Route::get('active-ed','backend\OrderController@ActiveEdOrder' );
+        Route::get('deliver01/{customer_id}','backend\OrderController@DeliverOrder01' );
         Route::get('deliver','backend\OrderController@DeliverOrder' );
+        Route::get('deliver-after/{customer_id}','backend\OrderController@DeliverAfter' );
         Route::get('active-after/{customer_id}','backend\OrderController@ActiveAfter' );
         Route::get('customer-active/{customer_id}','backend\OrderController@CustomerActiveEdOrder' );
         Route::get('processed','backend\OrderController@Processed' );
+        Route::get('processed-detail/{customer_id}','backend\OrderController@ProcessedDetail' );
+        Route::get('cancel','backend\OrderController@CancelOrder' );
+        Route::get('cancel-detail/{customer_id}','backend\OrderController@CancelDetail' );
+        Route::get('confirm-order','backend\OrderController@ConfirmOrder' );
+        Route::get('confirm-detail/{customer_id}','backend\OrderController@ConfirmDetail' );
+        Route::get('confirm-after/{customer_id}','backend\OrderController@ConfirmAfter' );
         Route::get('detail-ghtk/{customer_id}','backend\OrderController@DetailGHTK' );
 
     });

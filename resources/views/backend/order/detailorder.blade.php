@@ -78,21 +78,26 @@
 									</tbody>
 
 								</table>
-								<table class="table">
-									<thead>
-										<tr>
-											<th width='70%'>
-												<h4 align='right'>Tổng Tiền :</h4>
-											</th>
-											<th>
-												<h4 align='right' style="color: brown;">{{ number_format($customer->total,0,'',',') }} đ</h4>
-											</th>
-
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
+								<div class="col-md-10 col-md-offset-1">
+									<div class="total-wrap">
+										<div class="row">
+											<div class="col-md-8">
+											</div>
+											<div class="col-md-3 col-md-push-1 text-center total-order">
+												<div class="total">
+													<div class="sub">
+														<p><span>Tổng:</span> <span>{{ number_format($customer->total,0,'',',') }} đ</span></p>
+														<p><span>Phí vận chuyển:</span> <span>100,000 đ</span></p>
+													</div>
+													<div class="grand-total">
+														<p><span><strong>Tổng cộng:</strong></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<br>
 								<div class="alert alert-primary" role="alert" align='right'>
 									<a name="" id="" class="btn btn-success" href="/admin/order/active/{{ $customer->id }}" role="button">Gửi GHTK</a>
 								</div>

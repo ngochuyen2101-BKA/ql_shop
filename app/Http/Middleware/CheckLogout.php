@@ -17,7 +17,13 @@ class CheckLogout
     public function handle($request, Closure $next)
     {
         if (Auth::check()) {
-            return redirect('admin');
+            if(Auth::user()->level == 1){
+                return redirect('admin');
+            }
+            if(Auth::user()->level == 2){
+                return redirect('/product');
+            }
+            
         }
         else {
             return $next($request);

@@ -506,7 +506,7 @@ border: rgb(151, 147, 147) solid 1px;
 
 .panel-blue .widget-left { background: #30a5ff; color: #fff; }
 .panel-teal .widget-left { background: #1ebfae; color: #fff; }
-.panel-orange .widget-left { background: #ffb53e; color: #fff; }
+.panel-orange .widget-left { background: #f9243f; color: #fff; }
 .panel-red .widget-left { background: #f9243f; color: #fff; }
 
 .panel-widget {
@@ -1143,5 +1143,42 @@ a.count-user {
     display: none;
 }
 
+a.btn-nh {
+    width: 160px;
+}
 
+.col-md-3.total-order {
+    margin-left: 60%;
+}
 
+.total-wrap .total {
+    padding: 1em;
+    background: whitesmoke;
+    width: 100%;
+}
+
+.total-wrap .total .sub {
+    border-bottom: 1px solid #FFC300;
+    margin-bottom: 10px;
+}
+
+.total-wrap .total p {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.total-wrap .total p span {
+    width: 48%;
+    display: inline-block;
+}
+
+.total-wrap .total p span:last-child {
+    font-weight: 500;
+}
+
+.total-wrap .total p {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+}

@@ -2,6 +2,34 @@
 @section('title','Thanh toán')
 @section('content')
 		<!-- main -->
+		<aside id="colorlib-hero">
+			<div class="flexslider">
+				<ul class="slides">
+					<li style="background-image: url(images/img_bg_1.jpg);">
+						<div class="overlay"></div>
+						<div class="container-fluid">
+							<div class="row">
+								
+							</div>
+						</div>
+					</li>
+					<li style="background-image: url(images/img_bg_2.jpg);">
+						<div class="overlay"></div>
+						<div class="container-fluid">
+							<div class="row">
+							</div>
+						</div>
+					</li>
+					<li style="background-image: url(images/img_bg_3.jpg);">
+						<div class="overlay"></div>
+						<div class="container-fluid">
+							<div class="row">
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</aside>
 	<form method="post" class="colorlib-form">
 		@csrf
 		<div class="colorlib-shop">
@@ -32,14 +60,14 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="fname">Họ & Tên</label>
-										<input name="full" type="text" id="fname" class="form-control" placeholder="First Name" value="{{ old('full') }}">
+										<input name="full" type="text" id="fname" class="form-control" placeholder="First Name" value="{{ $custom->full }}">
 										{!! ShowError($errors,"full") !!}
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="fname">Địa chỉ</label>
-										<input name="address" type="text" id="address" class="form-control" placeholder="Nhập địa chỉ của bạn" value="{{ old('address') }}">
+										<input name="address" type="text" id="address" class="form-control" placeholder="Nhập địa chỉ của bạn" value="{{ $custom->address }}">
 										{!! ShowError($errors,"address") !!}
 									</div>
 								</div>
@@ -60,12 +88,12 @@
 								<div class="form-group">
 									<div class="col-md-6">
 										<label for="email">Địa chỉ email</label>
-										<input name="email" type="email" id="email" class="form-control" placeholder="Ex: youremail@domain.com" value="{{ old('email') }}">
+										<input name="email" type="email" id="email" class="form-control" placeholder="Ex: youremail@domain.com" value="{{ $custom->email }}">
 										{!! ShowError($errors,"email") !!}
 									</div>
 									<div class="col-md-6">
 										<label for="Phone">Số điện thoại</label>
-										<input name="phone" type="text" id="zippostalcode" class="form-control" placeholder="Ex: 0123456789" value="{{ old('username') }}">
+										<input name="phone" type="text" id="zippostalcode" class="form-control" placeholder="Ex: 0123456789" value="{{ $custom->phone }}">
 										{!! ShowError($errors,"phone") !!}
 									</div>
 								</div>

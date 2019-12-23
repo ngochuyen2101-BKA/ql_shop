@@ -43,7 +43,7 @@ class OrderController extends Controller
         if(!$result){die("Connection Failure");}
         curl_close($curl);
         return $result;
-     }
+    }
 
     public function ListOrder()
     {
@@ -53,7 +53,21 @@ class OrderController extends Controller
 
     public function DetailOrder($customer_id)
     {
-        
+        $cus = customer::find($customer_id);
+        $data=[
+            "pick_province"=> "Hà Nội",
+            "pick_district"=> "Quận Thanh Xuân",
+            "province"=> $cus->province,
+            "district"=> $cus->district,
+            "address"=> $cus->address,
+            "weight"=> 0.1,
+            "value"=> $cus->total,
+            "transport"=> "fly"    
+            ];
+            
+        $make_call = $this->callAPI('GET', 'https:///services/shipment/fee', json_encode($data));
+        $response = json_decode($make_call, true);
+        dd($response);
         $data['customer'] = customer::find($customer_id);
         return view('backend.order.detailorder',$data);
     }
@@ -100,6 +114,7 @@ class OrderController extends Controller
 
         $make_call = $this->callAPI('POST', 'https://services.giaohangtietkiem.vn/services/shipment/order/?ver=1.5', json_encode($data));
         $response = json_decode($make_call, true);
+        // dd($response);
         $ghtk = new ghtk;
         $ghtk->order_code = $response['order']['label'];
         $ghtk->fee = $response['order']['fee'];
@@ -109,7 +124,7 @@ class OrderController extends Controller
         $ghtk->save();
         $data['ghtk'] = $ghtk;
         $data['customer'] = customer::find($customer_id);
-        return view('backend.order.GHTK',$data);
+        return redirect('/admin/order/active-ed');
     }
 
     public function ActiveEdOrder()
@@ -120,19 +135,33 @@ class OrderController extends Controller
 
     public function ActiveAfter($customer_id)
     {
-        $cus = customer::find($customer_id);
-        $cus->state = 3;
-        $cus->save();
         $ghtk = customer::find($customer_id)->ghtk->last();
         $data['ghtk'] = $ghtk;
         $data['customer'] = customer::find($customer_id);
         return view('backend.order.GHTK-after',$data);
     }
 
+    public function DeliverOrder01($customer_id)
+    {
+        $cus = customer::find($customer_id);
+        $cus->state = 3;
+        $cus->save();
+        
+        return redirect('/admin/order/deliver');
+    }
+
     public function DeliverOrder()
     {
         $data['customers'] = customer::where('state',3)->orderBy('updated_at','desc')->paginate(10);
         return view('backend.order.deliver',$data);
+    }
+
+    public function DeliverAfter($customer_id)
+    {
+        $ghtk = customer::find($customer_id)->ghtk->last();
+        $data['ghtk'] = $ghtk;
+        $data['customer'] = customer::find($customer_id);
+        return view('backend.order.deliver-after',$data);
     }
 
     public function CustomerActiveEdOrder($customer_id)
@@ -144,14 +173,59 @@ class OrderController extends Controller
         return view('backend.order.orderprocessed',$data);
     }
 
+    public function ConfirmOrder()
+    {
+        $data['customers'] = customer::where('state',4)->orderBy('updated_at','desc')->paginate(10);
+        return view('backend.order.confirm-order',$data);
+    }
+
+    public function ConfirmDetail($customer_id)
+    {
+        $ghtk = customer::find($customer_id)->ghtk->last();
+        $data['ghtk'] = $ghtk;
+        $data['customer'] = customer::find($customer_id);
+        return view('backend.order.confirm-detail',$data);
+    }
+
+    public function ConfirmAfter($customer_id)
+    {
+        $cus = customer::find($customer_id);
+        $cus->state = 1 ;
+        $cus->save();
+        
+        return redirect('/admin/order/processed');
+    }
+
     public function Processed()
     {
         $data['customers'] = customer::where('state',1)->orderBy('updated_at','desc')->paginate(10);
         return view('backend.order.orderprocessed',$data);
     }
 
+    public function ProcessedDetail($customer_id)
+    {
+        $ghtk = customer::find($customer_id)->ghtk->last();
+        $data['ghtk'] = $ghtk;
+        $data['customer'] = customer::find($customer_id);
+        return view('backend.order.processed-detail',$data);
+    }
+
+    public function CancelOrder()
+    {
+        $data['customers'] = customer::where('state',5)->orderBy('updated_at','desc')->paginate(10);
+        return view('backend.order.cancel',$data);
+    }
+
+    public function CancelDetail($customer_id)
+    {
+        $data['customers'] = customer::where('state',5)->orderBy('updated_at','desc')->paginate(10);
+        return view('backend.order.cancel',$data);
+    }
+
     public function DetailGHTK($customer_id)
     {
+        $ghtk = customer::find($customer_id)->ghtk->last();
+        $data['ghtk'] = $ghtk;
         $data['customer'] = customer::find($customer_id);
         return view('backend.order.GHTK',$data);
     }

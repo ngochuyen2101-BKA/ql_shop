@@ -25,7 +25,7 @@ class CartController extends Controller
                    'price' => getprice($product,$r->attr), 
                    'weight' => 0, 
                    'options' => ['img' => $product->img, 'attr' => $r->attr]]);
-        return redirect('/cart');
+        return redirect('/user/cart');
     }   
     
     public function DelCart($id)

@@ -2,6 +2,34 @@
 @section('title','Chi tiết sản phẩm')
 @section('content')
 		<!-- main -->
+		<aside id="colorlib-hero">
+			<div class="flexslider">
+				<ul class="slides">
+					<li style="background-image: url(images/img_bg_1.jpg);">
+						<div class="overlay"></div>
+						<div class="container-fluid">
+							<div class="row">
+								
+							</div>
+						</div>
+					</li>
+					<li style="background-image: url(images/img_bg_2.jpg);">
+						<div class="overlay"></div>
+						<div class="container-fluid">
+							<div class="row">
+							</div>
+						</div>
+					</li>
+					<li style="background-image: url(images/img_bg_3.jpg);">
+						<div class="overlay"></div>
+						<div class="container-fluid">
+							<div class="row">
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</aside>
 		<div class="colorlib-shop">
 			<div class="container">
 				<div class="row row-pb-lg">
@@ -17,7 +45,7 @@
 									</div>
 								</div>
 								<div class="col-md-7">
-									<form action="/cart/addcart" method="get">
+									<form action="/user/cart/addcart" method="get">
 
 										<div class="desc">
 											<h3>{{ $product->name }}</h3>

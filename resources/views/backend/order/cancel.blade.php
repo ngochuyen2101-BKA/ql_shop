@@ -1,5 +1,5 @@
 @extends('backend.master.master')
-@section('title','Đơn hàng đang vận chuyển')
+@section('title','Đơn hàng hủy')
 @section('order')
 	class="active"
 @endsection
@@ -12,7 +12,7 @@
 				<li><a href="#"><svg class="glyph stroked home">
 							<use xlink:href="#stroked-home"></use>
 						</svg></a></li>
-				<li class="active">Danh sách đơn hàng đang vận chuyển</li>
+				<li class="active">Danh sách đơn hàng hủy</li>
 			</ol>
 		</div>
 		<!--/.row-->
@@ -20,7 +20,7 @@
 			<div class="col-xs-12 col-md-12 col-lg-12">
 
 				<div class="panel panel-primary">
-					<div class="panel-heading">Danh sách đơn hàng đang vận chuyển</div>
+					<div class="panel-heading">Danh sách đơn hàng hủy</div>
 					<div class="panel-body">
 						@if (session('thongbao'))
 						<div class="alert bg-success" role="alert">
