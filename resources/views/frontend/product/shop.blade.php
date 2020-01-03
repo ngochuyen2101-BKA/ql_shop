@@ -73,7 +73,7 @@
 										@foreach ($category as $cate)
 											@if ($cate->parent == 0)
 												<div class="panel panel-default">
-													<div class="panel-heading" role="tab" id="headingOne">
+													<div class="panel-heading cate-sp" role="tab" id="headingOne">
 														<h4 class="panel-title">
 															<a data-toggle="collapse" data-parent="#accordion" href="#menu{{ $cate->id }}" aria-expanded="true" aria-controls="collapseOne">
 																{{ $cate->name }}

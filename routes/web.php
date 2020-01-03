@@ -41,6 +41,7 @@ Route::group(['prefix' => 'user','middleware' => 'CheckLogin2'], function () {
     //checkout
     Route::group(['prefix' => 'checkout'], function () {
         Route::get('{email}','frontend\CheckOutController@Checkout');
+        Route::post('check-deliver/{address}/{province}/{district}','frontend\CheckOutController@CheckDeliver');
         Route::get('complete/{id_customer}','frontend\CheckOutController@GetComplete');
         Route::post('{email}','frontend\CheckOutController@PostCheckout');
         // Route::get('complete/{order_id}','frontend\CheckOutController@GetComplete');
@@ -122,6 +123,7 @@ Route::group(['prefix' => 'admin','middleware' => 'CheckLogin'], function () {
 
         Route::get('','backend\OrderController@ListOrder' );
         Route::get('detail/{customer_id}','backend\OrderController@DetailOrder' );
+        Route::get('fee-deliver/{customer_id}','backend\OrderController@FeeDeliver' );
         Route::get('active/{customer_id}','backend\OrderController@ActiveOrder' );
         Route::get('active-ed','backend\OrderController@ActiveEdOrder' );
         Route::get('deliver01/{customer_id}','backend\OrderController@DeliverOrder01' );

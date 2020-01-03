@@ -45,8 +45,6 @@
 											<a href="/admin/product/del-value/{{ $value->id }}" class="del-value"><i class="fas fa-times"></i></a>
 										</div>
 										@endforeach
-									
-										<div class="text-attr"><a href="#" class="add-value"><i class="fas fa-plus-circle"></i></i></a></div>
 										
 									</div>		
 							</div>

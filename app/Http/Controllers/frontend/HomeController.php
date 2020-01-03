@@ -78,13 +78,14 @@ class HomeController extends Controller
         
         $data['customer'] = customer::find($id);
         $cus = customer::find($id);
-        if($cus->state !=5){
+        if($cus->state ==5 || $cus->state == 0 ){
+            
+            return view('frontend.detail01',$data);
+        }
+        else{
             $ghtk = customer::find($id)->ghtk->last();
             $data['ghtk'] = $ghtk;
             return view('frontend.detail',$data);
-        }
-        else{
-            return view('frontend.detail01',$data);
         }
         
     }

@@ -53,21 +53,49 @@ class OrderController extends Controller
 
     public function DetailOrder($customer_id)
     {
+        // $cus = customer::find($customer_id);
+        // $data=[
+        //     "pick_province"=> "Hà Nội",
+        //     "pick_district"=> "Thanh Xuân",
+        //     "province"=> $cus->province,
+        //     "district"=> $cus->district,
+        //     "address"=> $cus->address,
+        //     "weight"=> 0.1,
+        //     "value"=> $cus->total,
+        //     "transport"=> "road"    
+        //     ];
+            
+        // $str_send='?'.http_build_query($data);
+  
+            
+        // $make_call = $this->callAPI('GET', 'https://services.giaohangtietkiem.vn/services/shipment/fee'.$str_send, false);
+        // $response = json_decode($make_call, true);
+        // dd($response);
+        $data['customer'] = customer::find($customer_id);
+        return view('backend.order.detailorder',$data);
+    }
+
+    public function FeeDeliver($customer_id)
+    {
         $cus = customer::find($customer_id);
         $data=[
             "pick_province"=> "Hà Nội",
-            "pick_district"=> "Quận Thanh Xuân",
+            "pick_district"=> "Thanh Xuân",
             "province"=> $cus->province,
             "district"=> $cus->district,
             "address"=> $cus->address,
             "weight"=> 0.1,
             "value"=> $cus->total,
-            "transport"=> "fly"    
+            "transport"=> "road"    
             ];
             
-        $make_call = $this->callAPI('GET', 'https:///services/shipment/fee', json_encode($data));
+        $str_send='?'.http_build_query($data);
+  
+            
+        $make_call = $this->callAPI('GET', 'https://services.giaohangtietkiem.vn/services/shipment/fee'.$str_send, false);
         $response = json_decode($make_call, true);
-        dd($response);
+        $cus->fee = $response['fee']['fee'];
+        $cus->save();
         $data['customer'] = customer::find($customer_id);
         return view('backend.order.detailorder',$data);
     }
@@ -114,7 +142,6 @@ class OrderController extends Controller
 
         $make_call = $this->callAPI('POST', 'https://services.giaohangtietkiem.vn/services/shipment/order/?ver=1.5', json_encode($data));
         $response = json_decode($make_call, true);
-        // dd($response);
         $ghtk = new ghtk;
         $ghtk->order_code = $response['order']['label'];
         $ghtk->fee = $response['order']['fee'];

@@ -52,14 +52,14 @@
 							<div class="col-md-6">
 								<a href="" class="f-product-2" style="background-image: url(images/item-4.jpg);">
 									<div class="desc">
-										<h2>Sale <br>20% <br>off</h2>
+										<h2>Áo <br> Khoác<br> Nữ</h2>
 									</div>
 								</a>
 							</div>
 							<div class="col-md-12">
-								<a href="" class="f-product-2" style="background-image: url(images/item-3.jpg);">
+								<a href="" class="f-product-2" style="background-image: url(images/about.jpg);">
 									<div class="desc">
-										<h2>Giầy <br>cho <br>Nam</h2>
+										<h2>Quần<br> áo<br> Trẻ em</h2>
 									</div>
 								</a>
 							</div>
@@ -77,20 +77,10 @@
 					<div class="col-md-6">
 						<div class="intro-desc">
 							<div class="text-salebox">
-								<div class="text-lefts">
-									<div class="sale-box">
-										<div class="sale-box-top">
-											<h2 class="number">45</h2>
-											<span class="sup-1">%</span>
-											<span class="sup-2">Off</span>
-										</div>
-										<h2 class="text-sale">Sale</h2>
-									</div>
-								</div>
 								<div class="text-rights">
-									<h3 class="title">Dặt hàng hôm nay,nhận ngay khuyến mãi!</h3>
-									<p>Đã có hơn 1000 đơn hàng được gửi đi ở khắp quốc gia.</p>
-									<p><a href="shop.html" class="btn btn-primary">Mua ngay</a> <a href="#" class="btn btn-primary btn-outline">Đọc
+									<h3 class="title">Đặt hàng hôm nay,diện ngay đồ mới!</h3>
+									<p>Các đơn hàng được gửi đi ở khắp quốc gia.</p>
+									<p><a href="/product" class="btn btn-warning">Mua ngay</a> <a href="/product" class="btn btn-primary btn-outline">Đọc
 											thêm</a></p>
 								</div>
 							</div>

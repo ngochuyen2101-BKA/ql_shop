@@ -93,7 +93,7 @@
 											<p><span>Tổng:</span> <span>{{ $total }} đ</span></p>
 										</div>
 										<div class="grand-total">
-											<p><span><strong>Tổng cộng:</strong></span> <span>{{ $total }} đ </span></p><p>< Chưa tính phí vận chuyển></p>
+											<p><span><strong>Tổng cộng:</strong></span> <span>{{ $total }} đ </span></p>
 											<a href="/user/checkout/{{ Auth::user()->email }}" class="btn btn-primary">Thanh toán <i class="icon-arrow-right-circle"></i></a>
 										</div>
 									</div>
@@ -118,7 +118,7 @@
 
 	function update_cart(rowId,qty)
 			{
-				$.get("/cart/update/"+rowId+"/"+qty,
+				$.get("/user/cart/update/"+rowId+"/"+qty,
 				function(data)
 				{
 					if(data=="success")

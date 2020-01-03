@@ -3,21 +3,19 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="col-md-6 text-center">
-                    <h2><i class="icon-paperplane"></i>Đăng ký nhận bản tin</h2>
+            <div class="col-md-12 col-md-offset-2 footer-fr">
+                <div class="col-md-6 text-left">
+                    <p>
+                        <ul class="colorlib-social-icons">
+                            <li><a href="https://twitter.com/nguyenhuyen2101"><i class="icon-twitter"></i></a></li>
+                            <li><a href="https://www.facebook.com/nguyenthi.ngochuyen.520"><i class="icon-facebook"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/huyen-nguyen-105171167/"><i class="icon-linkedin"></i></a></li>
+                            <li><a href="https://www.instagram.com/ntn_h2117/"><i class="icon-instagram"></i></a></li>
+                        </ul>
+                    </p>
                 </div>
-                <div class="col-md-6">
-                    <form class="form-inline qbstp-header-subscribe">
-                        <div class="row">
-                            <div class="col-md-12 col-md-offset-0">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="email" placeholder="Nhập email của bạn">
-                                    <button type="submit" class="btn btn-primary">Đăng ký</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                <div class="col-md-6 copy-r text-right">
+                    <h4>© 2019 Nguyen Thi Ngoc Huyen</h4>
                 </div>
             </div>
         </div>
@@ -25,7 +23,7 @@
 </div>
 <!--end  subscribe -->
 <!-- footer -->
-<footer id="colorlib-footer" role="contentinfo">
+{{-- <footer id="colorlib-footer" role="contentinfo">
     <div class="container">
         <div class="row row-pb-md">
             <div class="col-md-3 colorlib-widget">
@@ -80,5 +78,5 @@
         </div>
     </div>
 
-</footer>
+</footer> --}}
 <!--end  footer -->

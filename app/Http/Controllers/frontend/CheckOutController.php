@@ -51,7 +51,12 @@ class CheckOutController extends Controller
         if(!$result){die("Connection Failure");}
         curl_close($curl);
         return $result;
-     }
+   }
+
+   public function CheckDeliver($address,$province,$district)
+    {
+        dd($address);
+    }
 
     public function PostCheckout(CheckOutRequest $r)
     {

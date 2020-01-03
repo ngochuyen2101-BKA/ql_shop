@@ -30,10 +30,10 @@
 											<div class="panel panel-blue">
 												<div class="panel-heading dark-overlay">Thông tin khách hàng</div>
 												<div class="panel-body">
-													<strong><span class="glyphicon glyphicon-user" aria-hidden="true"></span> : {{ $customer->full_name }}</strong> <br>
-													<strong><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> : {{ $customer->phone }}</strong>
+													<strong><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Họ và tên : {{ $customer->full_name }}</strong> <br>
+													<strong><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> Số điện thoại: {{ $customer->phone }}</strong>
 													<br>
-													<strong><span class="glyphicon glyphicon-send" aria-hidden="true"></span> : {{ $customer->address }}</strong>
+													<strong><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Địa chỉ : {{ $customer->address }}</strong>
 												</div>
 											</div>
 										</div>
@@ -87,10 +87,10 @@
 												<div class="total">
 													<div class="sub">
 														<p><span>Tổng:</span> <span>{{ number_format($customer->total,0,'',',') }} đ</span></p>
-														<p><span>Phí vận chuyển:</span> <span>100,000 đ</span></p>
+														<p><span>Phí vận chuyển:</span> <span>{{ number_format($customer->fee,0,'',',') }} đ</span></p>
 													</div>
 													<div class="grand-total">
-														<p><span><strong>Tổng cộng:</strong></span>
+														<p><span><strong>Tổng cộng: {{ number_format($customer->total+$customer->fee,0,'',',') }} đ</strong></span>
 													</div>
 												</div>
 											</div>
@@ -99,7 +99,9 @@
 								</div>
 								<br>
 								<div class="alert alert-primary" role="alert" align='right'>
-									<a name="" id="" class="btn btn-success" href="/admin/order/active/{{ $customer->id }}" role="button">Gửi GHTK</a>
+									<a name="" id="" class="btn btn-primary deliver-btn" href="/admin/order/fee-deliver/{{ $customer->id }}" role="button">Tính phí vận chuyển</a>
+									<a name="" id="" class="btn btn-success deliver-btn" href="/admin/order/active/{{ $customer->id }}" role="button">Gửi GHTK</a>
+									
 								</div>
 							</div>
 						</div>

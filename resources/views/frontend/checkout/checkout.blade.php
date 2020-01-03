@@ -54,7 +54,6 @@
 				</div>
 				<div class="row">
 					<div class="col-md-7">
-						
 							<h2>Chi tiết thanh toán</h2>
 							<div class="row">
 								<div class="col-md-6">
@@ -97,18 +96,17 @@
 										{!! ShowError($errors,"phone") !!}
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="row">
 									<div class="col-md-12">
-
+										
 									</div>
 								</div>
 							</div>
-						
 					</div>
+					
 					<div class="col-md-5">
 						<div class="cart-detail">
 							<h2>Tổng Giỏ hàng</h2>
-							<p>< Chưa tính phí vận chuyển ></p>
 							<ul>
 								<li>
 
@@ -133,7 +131,8 @@
 
 						<div class="row">
 							<div class="col-md-12">
-								<p><button class="btn btn-primary">Thanh toán</button></p>
+								<p><button class="btn btn-primary btn-ckt">Thanh toán</button></p>
+								{{-- <p><a onclick="return check_deliver()" class="btn btn-warning btn-ckt">Phí vận chuyển</a></p> --}}
 							</div>
 						</div>
 					</div>
@@ -144,3 +143,30 @@
 		<!-- end main -->
 
 @stop
+
+{{-- @section('script')
+@parent
+<script>
+	var address = document.getElementById("address").value;
+	var province = document.getElementById("province").value;
+	var district = document.getElementById("district").value;
+	function check_deliver()
+		{
+			alert(province);
+			// $.get("/user/checkout/check-deliver/"+address+"/"+province+"/"+district,
+			// function(data)
+			// {
+			// 	if(data=="success")
+			// 	{
+			// 		// location.reload();
+			// 		alert("cập nhật");
+			// 	}
+			// 	else
+			// 	{
+			// 		alert("cập nhật thất bại");
+			// 	}
+			// }
+			// );
+		}
+</script>
+@endsection --}}
