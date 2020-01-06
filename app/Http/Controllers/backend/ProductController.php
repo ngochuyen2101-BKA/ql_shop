@@ -212,10 +212,16 @@ class ProductController extends Controller
 
     public function PostAddVarisant(Request $r,$id)
     {
+        // dd($r->all());
         foreach($r->variant as $key=>$value)
         {
             $vari = variant::find($key);
-            $vari->price = $value;
+            if($value){
+                $vari->price = $value;
+            }
+            else{
+                $vari->price = 0;
+            }
             $vari->save();
         }
 

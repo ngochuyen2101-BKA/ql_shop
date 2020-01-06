@@ -31,8 +31,8 @@
 							<span class="glyphicon glyphicon-signal icon-50" aria-hidden="true"></span>
 						</div>
 						<div class="col-sm-9 col-lg-8 widget-right">
-							<div class="large">{{ number_format($number[count($number)],0,'',',') }} đ</div>
-							<div class="text-muted">Doanh thu tháng {{ count($number) }}</div>
+							<div class="large">{{ number_format($number[(int)($month_n)],0,'',',') }} đ</div>
+							<div class="text-muted">Doanh thu tháng {{ $month_n }}</div>
 						</div>
 					</div>
 				</div>

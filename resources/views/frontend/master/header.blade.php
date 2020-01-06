@@ -19,13 +19,8 @@
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
 								<li class="active"><a href="/">Trang chủ</a></li>
-								<li class="has-dropdown">
+								<li class="">
 									<a href="/product">Cửa hàng</a>
-									<ul class="dropdown">
-										<li><a href="/user/cart">Giỏ hàng</a></li>
-										<li><a href="/user/checkout">Thanh toán</a></li>
-
-									</ul>
 								</li>
 								<li><a href="/user/cart"><i class="icon-shopping-cart"></i> Giỏ hàng [{{ count(Cart::content()) }}]</a></li>
 							</ul>

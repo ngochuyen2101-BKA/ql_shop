@@ -67,6 +67,9 @@ class HomeController extends Controller
             $custom->save();
             return redirect()->back()->with('thongbao','Đã xác nhận thành công');
         }
+        if($custom->state == 4){
+            return redirect()->back()->with('thongbao','Đơn đã xác nhận');
+        }
         else{
             return redirect()->back()->with('thongbao1','Chưa thể xác nhận');
         }

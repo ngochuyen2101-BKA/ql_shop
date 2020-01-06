@@ -60,7 +60,7 @@
 													{{ $customer->email }}
 												</td>
 												<td>
-													<a href="/admin/order/deliver-after/{{ $customer->id }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>Chi tiết</a>
+													<a href="/admin/order/cancel-detail/{{ $customer->id }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>Chi tiết</a>
 												</td>
 											</tr>
 											@endforeach

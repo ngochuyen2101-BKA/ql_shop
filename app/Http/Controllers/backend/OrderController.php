@@ -245,8 +245,9 @@ class OrderController extends Controller
 
     public function CancelDetail($customer_id)
     {
+        $data['customer'] = customer::find($customer_id);
         $data['customers'] = customer::where('state',5)->orderBy('updated_at','desc')->paginate(10);
-        return view('backend.order.cancel',$data);
+        return view('backend.order.cancel-detail',$data);
     }
 
     public function DetailGHTK($customer_id)

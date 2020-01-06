@@ -41,11 +41,12 @@ class LoginController extends Controller
     {
         $year_n = Carbon::now()->format('Y');
         $month_n = Carbon::now()->format('m');
-        for($i=1;$i<=$month_n;$i++)
+        for($i=1;$i<=12;$i++)
         {
             $month[$i] = 'Tháng '.$i;
             $number[$i] = customer::where('state',1)->whereMonth('updated_at',$i)->whereYear('updated_at',$year_n)->sum('total');
         }
+        $data['month_n'] = $month_n;
         $data['month'] = $month;
         $data['number'] = $number;
         $data['order'] = customer::where('state',0)->count();

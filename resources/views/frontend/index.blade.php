@@ -34,7 +34,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<a href="shop.html" class="f-product-1" style="background-image: url(images/item-1.jpg);">
+						<a href="/product?category=2" class="f-product-1" style="background-image: url(images/item-1.jpg);">
 							<div class="desc">
 								<h2>Mẫu <br>cho <br>Nam</h2>
 							</div>
@@ -43,21 +43,21 @@
 					<div class="col-md-6">
 						<div class="row">
 							<div class="col-md-6">
-								<a href="" class="f-product-2" style="background-image: url(images/item-2.jpg);">
+								<a href="/product?category=11" class="f-product-2" style="background-image: url(images/item-2.jpg);">
 									<div class="desc">
 										<h2> <br>Váy <br> Mới</h2>
 									</div>
 								</a>
 							</div>
 							<div class="col-md-6">
-								<a href="" class="f-product-2" style="background-image: url(images/item-4.jpg);">
+								<a href="/product?category=12" class="f-product-2" style="background-image: url(images/item-4.jpg);">
 									<div class="desc">
 										<h2>Áo <br> Khoác<br> Nữ</h2>
 									</div>
 								</a>
 							</div>
 							<div class="col-md-12">
-								<a href="" class="f-product-2" style="background-image: url(images/about.jpg);">
+								<a href="/product?category=13" class="f-product-2" style="background-image: url(images/about.jpg);">
 									<div class="desc">
 										<h2>Quần<br> áo<br> Trẻ em</h2>
 									</div>
@@ -80,8 +80,7 @@
 								<div class="text-rights">
 									<h3 class="title">Đặt hàng hôm nay,diện ngay đồ mới!</h3>
 									<p>Các đơn hàng được gửi đi ở khắp quốc gia.</p>
-									<p><a href="/product" class="btn btn-warning">Mua ngay</a> <a href="/product" class="btn btn-primary btn-outline">Đọc
-											thêm</a></p>
+									<p><a href="/product" class="btn btn-warning">Mua ngay</a></p>
 								</div>
 							</div>
 						</div>

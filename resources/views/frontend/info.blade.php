@@ -78,7 +78,7 @@
 												Đã đăng GHTK
 											@elseif($row->state==3)
 												Đang vận chuyển
-											@elseif($row->state==4 && $row->state==1 )
+											@elseif($row->state==4 || $row->state==1 )
 												Đã xác nhận nhận hàng
 											@elseif($row->state==5 )
 												Hủy đơn
@@ -86,7 +86,7 @@
 										</td>
 										<td>
 											<a onclick="return xn_order('{{ $a['order_code'] }}') " href="/user/confirm/{{ $row->id }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Xác nhận</a>
-											<a onclick="return del_prd('{{ $a['order_code'] }}') " href="/user/del/{{ $row->id }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+											<a onclick="return del_prd() " href="/user/del/{{ $row->id }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
 											@if($row->state!=5)
 											<a href="/user/detail/{{ $row->id }}" class="btn btn-primary"><i class="fa fa-trash" aria-hidden="true"></i> Chi tiết</a>
 											@elseif($row->state==5)
@@ -118,7 +118,7 @@
 <script>
 	function del_prd(prd)
 		{
-			return confirm('Bạn muốn xóa đơn hàng: '+prd);
+			return confirm('Bạn muốn hủy đơn hàng ');
 		}
 
 	function xn_order(prd)

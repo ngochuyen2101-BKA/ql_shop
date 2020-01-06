@@ -50,13 +50,13 @@
 										<div class="desc">
 											<h3>{{ $product->name }}</h3>
 											<p class="price">
-												<span>{{ number_format($product->price,0,'',',') }}</span>
+												<span>{{ number_format($product->price,0,'',',') }} đ</span>
 											</p>
 											<p>{{ $product->info }}</p>
 											@foreach (attr_values($product->values) as $key=>$value)
 												<div class="size-wrap">
 													<p class="size-desc">
-														{{ $key }}
+														<strong>{{ $key }}&nbsp;</strong>
 														@foreach ($value as $item)
 															<a class="size">{{ $item }}</a>
 														@endforeach
